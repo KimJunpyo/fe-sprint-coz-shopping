@@ -1,5 +1,6 @@
 import {GoGift} from "react-icons/go";
 import {BsStar} from "react-icons/bs";
+import {Link} from "react-router-dom";
 
 function HamburgerModal() {
   return (
@@ -7,14 +8,19 @@ function HamburgerModal() {
       <div className="flex h-12 items-center justify-center">
         김준표님, 안녕하세요!
       </div>
-      <div className="flex h-12 items-center justify-start border-2 border-x-0 pl-5">
-        <GoGift />
-        <p className="m-2">상품리스트 페이지</p>
-      </div>
-      <div className="flex h-12 items-center justify-start pl-5">
-        <BsStar />
-        <p className="m-2">북마크 페이지</p>
-      </div>
+
+      <Link to="/product/list">
+        <div className="flex h-12 items-center justify-start border-2 border-x-0 pl-5">
+          <GoGift />
+          <p className="m-2">상품리스트 페이지</p>
+        </div>
+      </Link>
+      <Link to="/bookmark">
+        <div className="flex h-12 items-center justify-start pl-5">
+          <BsStar />
+          <p className="m-2">북마크 페이지</p>
+        </div>
+      </Link>
     </div>
   );
 }
