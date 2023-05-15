@@ -1,6 +1,7 @@
 import CodestatesLogo from "../Assets/logo.png";
 import Hamburger from "../Assets/햄버거 버튼.png";
 import {useState, useEffect, useRef} from "react";
+import {Link} from "react-router-dom";
 import HamburgerModal from "./HamburgerModal";
 
 function Header() {
@@ -29,11 +30,13 @@ function Header() {
   return (
     <header className="w-full h-20 bg-white shadow-headerShadow flex justify-between items-center select-none sticky">
       <div className="relative">
-        <img
-          src={CodestatesLogo}
-          alt="코드스테이츠 로고"
-          className="absolute left-10 cursor-pointer"
-        />
+        <Link to="/">
+          <img
+            src={CodestatesLogo}
+            alt="코드스테이츠 로고"
+            className="absolute left-10 cursor-pointer"
+          />
+        </Link>
         <p className="ml-28 text-2xl font-bold">COZ Shopping</p>
       </div>
       <div className="relative cursor-pointer" ref={modalRef}>
