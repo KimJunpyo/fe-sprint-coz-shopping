@@ -4,10 +4,27 @@ import ProductCard from "../Components/ProductCard";
 import {useDispatch} from "react-redux";
 import {setProduct} from "../Actions";
 import {LocalStorage} from "../Utils/BrowserStorage";
+import {debounce} from "../Utils/TimerUtils";
 
 function Main() {
   const [productList, setProductList] = useState();
+  const [randomProductList, setRandomProductList] = useState([]);
+  const [showProductList, setShowProductList] = useState([]);
   const dispatch = useDispatch();
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let randomNum = Math.floor(Math.random() * array.length);
+      [array[i], array[randomNum]] = [array[randomNum], array[i]];
+    }
+    return array;
+  };
+
+  const handleResize = debounce(() => {
+    setShowProductList(() => {
+      return randomProductList.slice(0, Math.floor(window.innerWidth / 300));
+    });
+  }, 50);
 
   useEffect(() => {
     const storedProductList = LocalStorage.get("productList");
@@ -25,16 +42,32 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    if (productList) dispatch(setProduct(productList));
+    if (productList) {
+      setRandomProductList(() => {
+        return shuffleArray(productList);
+      });
+      dispatch(setProduct(productList));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productList]);
 
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [randomProductList]);
   return (
-    <div>
-      {productList &&
-        productList.map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
+    <div className="flex flex-col">
+      <div className="text-2xl font-semibold ml-2 my-5">상품 리스트</div>
+      <div className="flex justify-around">
+        {showProductList &&
+          showProductList.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+      </div>
     </div>
   );
 }

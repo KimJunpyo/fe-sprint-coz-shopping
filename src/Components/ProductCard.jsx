@@ -100,6 +100,7 @@ const ProductCardSize = styled.div`
   height: 16.5rem;
   width: 16.5rem;
   user-select: none;
+  margin: 0 0.5rem 0;
 `;
 
 export default ProductCard;
