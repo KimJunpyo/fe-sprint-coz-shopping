@@ -2,10 +2,10 @@ import {useState} from "react";
 import Card from "./Card";
 import {styled} from "styled-components";
 import ProductCardModal from "./ProductCardModal";
+import {PRODUCT_TYPE_LIST} from "../Assets/ConstantValue";
 
 function ProductCard({product}) {
-  const [isClick, setIsClick] = useState(false);
-
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const {
     id,
     type,
@@ -21,21 +21,21 @@ function ProductCard({product}) {
 
   const handleClick = (event) => {
     if (event === undefined) {
-      setIsClick(false);
+      setIsOpenModal(false);
       return;
     }
     if (event.target.classList.contains("bookmark-icon")) {
       return;
     }
-    setIsClick(!isClick);
+    setIsOpenModal(!isOpenModal);
   };
 
   let content = null;
 
-  if (type === "Product") {
+  if (type === PRODUCT_TYPE_LIST.PRODUCT) {
     content = (
       <>
-        <Card image_url={image_url} id={id} />
+        <Card imageUrl={image_url} id={id} />
         <div className="flex justify-between">
           <div className="font-extrabold">{title}</div>
           <div className="flex flex-col items-end">
@@ -48,18 +48,18 @@ function ProductCard({product}) {
       </>
     );
   }
-  if (type === "Category") {
+  if (type === PRODUCT_TYPE_LIST.CATEGORY) {
     content = (
       <>
-        <Card image_url={image_url} id={id} />
+        <Card imageUrl={image_url} id={id} />
         <div className="font-extrabold"># {title}</div>
       </>
     );
   }
-  if (type === "Exhibition") {
+  if (type === PRODUCT_TYPE_LIST.EXHIBITION) {
     content = (
       <>
-        <Card image_url={image_url} id={id} />
+        <Card imageUrl={image_url} id={id} />
         <div className="flex flex-col">
           <div className="font-extrabold">{title}</div>
           <div>{sub_title}</div>
@@ -67,10 +67,10 @@ function ProductCard({product}) {
       </>
     );
   }
-  if (type === "Brand") {
+  if (type === PRODUCT_TYPE_LIST.BRAND) {
     content = (
       <>
-        <Card image_url={brand_image_url} id={id} />
+        <Card imageUrl={brand_image_url} id={id} />
         <div className="flex justify-between">
           <div className="font-extrabold">{brand_name}</div>
           <div className="flex flex-col items-end">
@@ -85,7 +85,7 @@ function ProductCard({product}) {
   return (
     <>
       <ProductCardSize onClick={handleClick}>{content}</ProductCardSize>
-      {isClick && (
+      {isOpenModal && (
         <ProductCardModal
           title={type === "Brand" ? brand_name : title}
           image_url={type === "Brand" ? brand_image_url : image_url}

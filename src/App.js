@@ -4,7 +4,7 @@ import Main from "./Pages/Main"
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import ProductList from './Pages/ProductList';
-import Bookmark from './Pages/Bookmark';
+import BookmarkList from './Pages/BookmarkList';
 
 function App () {
 
@@ -14,7 +14,7 @@ function App () {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/product/list" element={<ProductList />} />
-        <Route path="/bookmark" element={<Bookmark />} />
+        <Route path="/bookmark" element={<BookmarkList />} />
       </Routes>
       <Footer />
     </BrowserRouter>
