@@ -1,6 +1,6 @@
 import {useEffect, useRef} from "react";
 import {styled} from "styled-components";
-import CloseButton from "../Assets/ic_round-close.png";
+import CloseButton from "../Assets/Images/closeButton.png";
 
 function ProductCardModal({title, image_url, handleClick}) {
   const modalRef = useRef();

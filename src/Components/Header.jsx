@@ -1,5 +1,5 @@
-import CodestatesLogo from "../Assets/logo.png";
-import Hamburger from "../Assets/햄버거 버튼.png";
+import CodestatesLogo from "../Assets/Images/logo.png";
+import Hamburger from "../Assets/Images/hamburgerButton.png";
 import {useState, useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import HamburgerModal from "./HamburgerModal";
