@@ -35,7 +35,7 @@ function ProductCard({product}) {
   if (type === PRODUCT_TYPE_LIST.PRODUCT) {
     content = (
       <>
-        <Card imageUrl={image_url} id={id} />
+        <Card imgUrl={image_url} id={id} />
         <div className="flex justify-between">
           <div className="font-extrabold">{title}</div>
           <div className="flex flex-col items-end">
@@ -51,7 +51,7 @@ function ProductCard({product}) {
   if (type === PRODUCT_TYPE_LIST.CATEGORY) {
     content = (
       <>
-        <Card imageUrl={image_url} id={id} />
+        <Card imgUrl={image_url} id={id} />
         <div className="font-extrabold"># {title}</div>
       </>
     );
@@ -59,7 +59,7 @@ function ProductCard({product}) {
   if (type === PRODUCT_TYPE_LIST.EXHIBITION) {
     content = (
       <>
-        <Card imageUrl={image_url} id={id} />
+        <Card imgUrl={image_url} id={id} />
         <div className="flex flex-col">
           <div className="font-extrabold">{title}</div>
           <div>{sub_title}</div>
@@ -70,7 +70,7 @@ function ProductCard({product}) {
   if (type === PRODUCT_TYPE_LIST.BRAND) {
     content = (
       <>
-        <Card imageUrl={brand_image_url} id={id} />
+        <Card imgUrl={brand_image_url} id={id} />
         <div className="flex justify-between">
           <div className="font-extrabold">{brand_name}</div>
           <div className="flex flex-col items-end">
