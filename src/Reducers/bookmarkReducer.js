@@ -1,13 +1,19 @@
+import { LocalStorage } from "../Utils/BrowserStorage";
 import { bookmarkList } from "./initialState";
 
 export const bookmarkReducer = (state = bookmarkList, action) => {
+  
+  const bookmarkState = LocalStorage.get("bookmarkList");
     switch (action.type) {
       case "ADD_BOOKMARK":
-        return [...state, action.payload];
+        const addedState = [...state, action.payload];
+        LocalStorage.set("bookmarkList", JSON.stringify(addedState))
+        return addedState;
       case "REMOVE_BOOKMARK":
-        let test = state.filter(e => e !== action.payload);
-        return test;
+        const removedState = state.filter(e => e !== action.payload);
+        LocalStorage.set("bookmarkList", JSON.stringify(removedState));
+        return removedState;
       default:
-        return state;
+        return bookmarkState ? JSON.parse(bookmarkState) : state;
     }
   }

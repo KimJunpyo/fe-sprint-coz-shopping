@@ -1,11 +1,12 @@
 import CodestatesLogo from "../Assets/Images/logo.png";
 import Hamburger from "../Assets/Images/hamburgerButton.png";
 import {useState, useEffect, useRef} from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import HamburgerModal from "./HamburgerModal";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
   const modalRef = useRef();
 
   const handleHamburgerButton = () => {
@@ -27,14 +28,21 @@ function Header() {
     }
   };
 
+  const handleReload = () => {
+    if (location.pathname === "/") {
+      window.location.reload();
+    }
+  };
+
   return (
-    <header className="w-full h-20 bg-white shadow-headerShadow flex justify-between items-center select-none sticky">
+    <header className="z-10 w-full h-20 bg-white shadow-headerShadow flex justify-between items-center select-none sticky">
       <div className="relative">
         <Link to="/">
           <img
             src={CodestatesLogo}
             alt="코드스테이츠 로고"
             className="absolute left-10 cursor-pointer"
+            onClick={handleReload}
           />
         </Link>
         <p className="ml-28 text-2xl font-bold">COZ Shopping</p>

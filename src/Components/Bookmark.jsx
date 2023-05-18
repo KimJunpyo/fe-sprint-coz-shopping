@@ -27,9 +27,7 @@ function Bookmark({id}) {
   }, [isBookmarked]);
 
   useEffect(() => {
-    if (!bookmarkState.includes(id))
-      LocalStorage.set("bookmarkList", JSON.stringify(bookmarkState));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    LocalStorage.set("bookmarkList", JSON.stringify(bookmarkState));
   }, [bookmarkState]);
 
   return (
