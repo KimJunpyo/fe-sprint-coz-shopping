@@ -89,6 +89,7 @@ function ProductCard({product}) {
         <ProductCardModal
           title={type === "Brand" ? brand_name : title}
           image_url={type === "Brand" ? brand_image_url : image_url}
+          id={id}
           handleClick={handleClick}
         />
       )}

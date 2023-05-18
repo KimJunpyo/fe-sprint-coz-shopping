@@ -9,7 +9,6 @@ export const shuffleArray = (array) => {
 };
 
 export const handleFilterProductList = (setState, categoryNumber, array) => {
-  console.log(array);
   if (categoryNumber === 0) {
     setState(array);
     return;

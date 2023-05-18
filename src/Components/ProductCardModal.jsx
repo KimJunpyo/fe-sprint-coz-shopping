@@ -1,8 +1,9 @@
 import {useEffect, useRef} from "react";
 import {styled} from "styled-components";
 import CloseButton from "../Assets/Images/closeButton.png";
+import Bookmark from "./Bookmark";
 
-function ProductCardModal({title, image_url, handleClick}) {
+function ProductCardModal({title, image_url, id, handleClick}) {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -30,7 +31,12 @@ function ProductCardModal({title, image_url, handleClick}) {
         <div className="w-full flex justify-end p-5">
           <img src={CloseButton} alt="종료 버튼" onClick={handleClick} />
         </div>
-        <div className="text-white text-2xl font-bold">{title}</div>
+        <div className="flex m-6 items-center">
+          <div className="mr-2">
+            <Bookmark id={id} />
+          </div>
+          <div className="text-white text-2xl font-bold">{title}</div>
+        </div>
       </Modal>
     </ModalContainer>
   );

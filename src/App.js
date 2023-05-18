@@ -5,6 +5,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import ProductList from './Pages/ProductList';
 import BookmarkList from './Pages/BookmarkList';
+import NotifyBox from './Components/NotifyBox';
 
 function App () {
 
@@ -16,6 +17,7 @@ function App () {
         <Route path="/product/list" element={<ProductList />} />
         <Route path="/bookmark" element={<BookmarkList />} />
       </Routes>
+      <NotifyBox />
       <Footer />
     </BrowserRouter>
   );

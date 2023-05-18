@@ -1,4 +1,4 @@
-import { LocalStorage } from "../Utils/BrowserStorage";
+import { LocalStorage } from "../../Utils/BrowserStorage";
 import { bookmarkList } from "./initialState";
 
 export const bookmarkReducer = (state = bookmarkList, action) => {

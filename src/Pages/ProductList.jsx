@@ -3,7 +3,7 @@ import ProductCard from "../Components/ProductCard";
 import {useEffect, useState} from "react";
 import {LocalStorage} from "../Utils/BrowserStorage";
 import {getProducts} from "../Apis/DataSetup";
-import {setProduct} from "../Actions";
+import {setProduct} from "../Reduxes/Actions";
 import {CATEGORY_LIST} from "../Assets/ConstantValue";
 import ProductCategory from "../Components/ProductCategory";
 import {shuffleArray} from "../Utils/ArrayUtil";

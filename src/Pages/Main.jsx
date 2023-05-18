@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import {getProducts} from "../Apis/DataSetup";
 import ProductSection from "../Components/ProductSection";
 import {useDispatch, useSelector} from "react-redux";
-import {setProduct} from "../Actions";
+import {setProduct} from "../Reduxes/Actions";
 import {LocalStorage} from "../Utils/BrowserStorage";
 import {LIST_TITLE} from "../Assets/ConstantValue";
 import {shuffleArray} from "../Utils/ArrayUtil";

@@ -13,6 +13,20 @@ module.exports = {
             colors: {
                 "grey-888": "#888888",
                 "blue-purple": "#452CDD",
+            },
+            keyframes: {
+                "toast-in-right": {
+                    "from": { transform: "translateX(100%)" },
+                    "to": { transform: "translateX(0)" },
+                },
+                "fade-out": {
+                    "0%": { opacity: 100, transform: "translateX(0)" },
+                    "100%": { opacity:0, transform: "translateX(100%)"},
+                }
+            },
+            animation: {
+                "toast-in-right": "toast-in-right 1s",
+                "fade-out": "fade-out 1s"
             }
         },
     },
