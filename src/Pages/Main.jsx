@@ -1,30 +1,18 @@
 import {useState, useEffect} from "react";
 import {getProducts} from "../Apis/DataSetup";
-import ProductCard from "../Components/ProductCard";
-import {useDispatch} from "react-redux";
+import ProductSection from "../Components/ProductSection";
+import {useDispatch, useSelector} from "react-redux";
 import {setProduct} from "../Actions";
 import {LocalStorage} from "../Utils/BrowserStorage";
-import {debounce} from "../Utils/TimerUtils";
+import {LIST_TITLE} from "../Assets/ConstantValue";
+import {shuffleArray} from "../Utils/ArrayUtil";
 
 function Main() {
   const [productList, setProductList] = useState();
-  const [randomProductList, setRandomProductList] = useState([]);
-  const [showProductList, setShowProductList] = useState([]);
+  const [randomProductList, setRandomProductList] = useState();
+  const [bookmarkList, setBookmarkList] = useState();
   const dispatch = useDispatch();
-
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      let randomNum = Math.floor(Math.random() * array.length);
-      [array[i], array[randomNum]] = [array[randomNum], array[i]];
-    }
-    return array;
-  };
-
-  const handleResize = debounce(() => {
-    setShowProductList(() => {
-      return randomProductList.slice(0, Math.floor(window.innerWidth / 300));
-    });
-  }, 50);
+  const bookmarkState = useSelector((state) => state.bookmarkReducer);
 
   useEffect(() => {
     const storedProductList = LocalStorage.get("productList");
@@ -46,29 +34,32 @@ function Main() {
       setRandomProductList(() => {
         return shuffleArray(productList);
       });
+      setBookmarkList(
+        productList.filter((product) => bookmarkState.includes(product.id))
+      );
       dispatch(setProduct(productList));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productList]);
 
   useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    if (productList) {
+      setBookmarkList(
+        productList.filter((product) => bookmarkState.includes(product.id))
+      );
+    }
+  }, [bookmarkState]);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [randomProductList]);
   return (
-    <div className="flex flex-col">
-      <div className="text-2xl font-semibold ml-2 my-5">상품 리스트</div>
-      <div className="flex justify-around">
-        {showProductList &&
-          showProductList.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-      </div>
-    </div>
+    <>
+      {randomProductList && (
+        <ProductSection title={LIST_TITLE.PRODUCT} list={randomProductList} />
+      )}
+
+      {bookmarkList && (
+        <ProductSection title={LIST_TITLE.BOOKMARK} list={bookmarkList} />
+      )}
+    </>
   );
 }
 

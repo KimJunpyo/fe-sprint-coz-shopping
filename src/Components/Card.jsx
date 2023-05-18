@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Bookmark from "./Bookmark";
 
-function Card({imageUrl, id}) {
+function Card({imgUrl, id}) {
   return (
     <div className="flex flex-col">
-      <CardImg img={imageUrl}>
+      <CardImg img={imgUrl}>
         <div className="z-1 absolute bottom-3 right-3 text-white">
           <Bookmark id={id} />
         </div>
