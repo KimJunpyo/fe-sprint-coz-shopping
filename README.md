@@ -33,7 +33,9 @@ src
 ### 0.0.1
 
 > 쇼핑몰 사이트 구현(Main, ProductList, BookmarkList)
+
 > Toast, Bookmark, Modal, Category, Dropdown, Header, Footer UI 구현
+
 > Redux + localStorage로 새로고침 및 재접속 시 데이터가 정상적으로 출력될 수 있도록 구현
 
 ##
