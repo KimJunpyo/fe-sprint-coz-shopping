@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import bookmarkOff from "../Assets/Images/bookmarkIconOff.png";
 import bookmarkOn from "../Assets/Images/bookmarkIconOn.png";
 import {useDispatch, useSelector} from "react-redux";
-import {addBookmark, removeBookMark} from "../Actions";
+import {addBookmark, notify, removeBookMark} from "../Reduxes/Actions";
 import {LocalStorage} from "../Utils/BrowserStorage";
 
 function Bookmark({id}) {
@@ -19,7 +19,10 @@ function Bookmark({id}) {
 
   useEffect(() => {
     if (isBookmarked) {
-      if (!bookmarkState.includes(id)) dispatch(addBookmark(id));
+      if (!bookmarkState.includes(id)) {
+        dispatch(notify("북마크에 추가했습니다."));
+        dispatch(addBookmark(id));
+      }
     } else {
       dispatch(removeBookMark(id));
     }

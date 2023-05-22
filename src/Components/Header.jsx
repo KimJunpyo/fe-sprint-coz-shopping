@@ -35,7 +35,7 @@ function Header() {
   };
 
   return (
-    <header className="z-10 w-full h-20 bg-white shadow-headerShadow flex justify-between items-center select-none sticky">
+    <header className="z-10 w-full h-20 bg-white shadow-headerShadow flex justify-between items-center select-none sticky top-0">
       <div className="relative">
         <Link to="/">
           <img
